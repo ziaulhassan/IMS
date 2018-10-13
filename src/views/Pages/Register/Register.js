@@ -1,7 +1,38 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-
+import fire from '../../../Config/firebase'
 class Register extends Component {
+  constructor() {
+    super()
+    this.event_register = this.event_register.bind(this)
+    this.create_account = this.create_account.bind(this)
+    this.state = {
+
+      UserName: '',
+      emailid: '',
+      password: '',
+      repassword: '',
+      page: 1,
+    }
+  }
+  event_register(e) {
+    this.setState({ [e.target.name]: e.target.value })
+
+  }
+  create_account() {
+    if (this.state.password === this.state.repassword && this.state.password!="") {
+      fire.auth().createUserWithEmailAndPassword(this.state.emailid,this.state.password)
+
+      console.log("Cond Chl rhi hy")
+    }
+    else {
+      console.log("nai chl rhi")
+    }
+
+  }
+
+
+
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -19,13 +50,13 @@ class Register extends Component {
                           <i className="icon-user"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Username" autoComplete="username" />
+                      <Input type="text" name="UserName" placeholder="Username" autoComplete="username" onChange={this.event_register} />
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>@</InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Email" autoComplete="email" />
+                      <Input type="text" name="emailid" placeholder="Email" autoComplete="email" onChange={this.event_register} />
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
@@ -33,7 +64,7 @@ class Register extends Component {
                           <i className="icon-lock"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="password" placeholder="Password" autoComplete="new-password" />
+                      <Input type="password" name="password" placeholder="Password" autoComplete="new-password" onChange={this.event_register} />
                     </InputGroup>
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">
@@ -41,9 +72,9 @@ class Register extends Component {
                           <i className="icon-lock"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="password" placeholder="Repeat password" autoComplete="new-password" />
+                      <Input type="password" name="repassword" placeholder="Repeat password" autoComplete="new-password" onChange={this.event_register} />
                     </InputGroup>
-                    <Button color="success" block>Create Account</Button>
+                    <Button color="success" block onClick={this.create_account}>Create Account</Button>
                   </Form>
                 </CardBody>
                 <CardFooter className="p-4">
