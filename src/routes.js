@@ -204,11 +204,21 @@ const Cowork = Loadable({
   loader: () => import('./views/Cowork/Cowork'),
   loading: Loading,
 });
+const AboutUs = Loadable({
+  loader: () => import('./views/Cowork/aboutus'),
+  loading: Loading,
+});
+const Profile = Loadable({
+  loader: () => import('./views/Cowork/profile'),
+  loading: Loading,
+});
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/cowork',exact: true, name: 'Cowork', component: Cowork },
+  { path: '/aboutus',exact: true, name: 'AboutUs', component: AboutUs }, 
+  { path: '/profile',exact: true, name: 'Profile', component: Profile },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },

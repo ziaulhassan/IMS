@@ -51,12 +51,13 @@ function About(props) {
     )
 }
 
-class Cowork extends Component {
+class AboutUs extends Component {
     constructor(props) {
         super()
 
         this.event_aboutus = this.event_aboutus.bind(this)
         //this.toggle = this.toggle.bind(this);
+
         this.state = {
 
         };
@@ -75,6 +76,7 @@ class Cowork extends Component {
 
                 <Menu this={this} />
                 <About this={this} />
+                <h1>new page of aboutus</h1>
                 <Row md="2">
                     <Col md="3">
                 <Nav className="d-md-down-nonee" navbar>
@@ -130,4 +132,4 @@ class Cowork extends Component {
 }
 
 
-export default Cowork;
+export default AboutUs;

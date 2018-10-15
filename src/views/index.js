@@ -22,6 +22,8 @@ import { ButtonDropdowns, ButtonGroups, Buttons, BrandButtons } from './Buttons'
 import Charts from './Charts';
 import Dashboard from './Dashboard';
 import Cowork from './Cowork';
+import AboutUs from './Cowork';
+import Profile from './Cowork';
 import { CoreUIIcons, Flags, FontAwesome, SimpleLineIcons } from './Icons';
 import { Alerts, Badges, Modals } from './Notifications';
 import { Login, Page404, Page500, Register } from './Pages';
@@ -30,6 +32,7 @@ import Widgets from './Widgets';
 import fridge from './electronics';
 import tv from './electronics';
 import fan from './electronics';
+
 
 export {
   Badges,
@@ -72,6 +75,8 @@ export {
   fridge,
   tv,
   fan,
-  Cowork
+  Cowork,
+  AboutUs,
+  Profile
 };
 

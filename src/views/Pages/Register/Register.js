@@ -14,15 +14,29 @@ class Register extends Component {
       repassword: '',
       page: 1,
     }
+    this.userpackage = {
+
+      emailid: '',
+      nationality:'pakistani'
+
+    }
   }
   event_register(e) {
     this.setState({ [e.target.name]: e.target.value })
 
   }
   create_account() {
-    if (this.state.password === this.state.repassword && this.state.password!="") {
-      fire.auth().createUserWithEmailAndPassword(this.state.emailid,this.state.password)
-
+    this.userpackage.emailid=this.state.emailid
+    if (this.state.password === this.state.repassword && this.state.password != "") {
+      fire.auth().createUserWithEmailAndPassword(this.state.emailid, this.state.password)
+      .then(
+        userpr=>{
+        var dbref=fire.database().ref(`Users/${userpr.user.uid}`)
+        dbref.set(this.userpackage)
+        }
+      )
+      .catch()
+      
       console.log("Cond Chl rhi hy")
     }
     else {
@@ -30,7 +44,6 @@ class Register extends Component {
     }
 
   }
-
 
 
   render() {
