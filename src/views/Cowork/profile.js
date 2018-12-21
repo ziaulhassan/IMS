@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import { Bar, Line } from 'react-chartjs-2';
 import background from './cover.jpg';
+import fire from '../../Config/firebase'
 import {
     Badge,
     Button,
@@ -36,11 +37,40 @@ import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities'
 class Profile extends Component {
     constructor(props) {
         super()
+        this.event_profile = this.event_profile.bind(this)
+        this.submit_profile= this.submit_profile.bind(this)
 
         this.state = {
+            Name: '',
+            Contact: '',
+            Address: '',
+            Homecity: ''
 
         };
+        this.userpackage = {
 
+            Name: '',
+            Contact: '',
+            Address: '',
+            Homecity: ''
+
+        }
+
+    }
+
+    event_profile(e) {
+        this.setState({ [e.target.name]: e.target.value })
+
+    }
+
+    submit_profile(){
+        this.userpackage.Name=this.state.Name
+        this.userpackage.Contact=this.state.Contact
+        this.userpackage.Address=this.state.Address
+        this.userpackage.Homecity=this.state.Homecity
+
+        var dbref=fire.database().ref(`Users/${localStorage.getItem('user')}/About`)
+        dbref.update(this.userpackage)
     }
 
     render() {
@@ -48,7 +78,7 @@ class Profile extends Component {
         return (
             <div>
 
-                <Row>
+                {/* <Row>
                     <Col>
                         <Card>
                             <CardHeader>
@@ -64,51 +94,72 @@ class Profile extends Component {
                     </Col>
 
 
-                </Row>
+                </Row> */}
                 <Row>
                     <Col>
                         <Card>
                             <CardHeader>
-                                <strong>Horizontal</strong> Form
-              </CardHeader>
+                                <strong>User Profile</strong>
+                            </CardHeader>
                             <CardBody>
                                 <Form action="" method="post" className="form-horizontal">
 
-
-
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="hf-email">Email</Label>
+                                            <Label htmlFor="hf-email">Name</Label>
                                         </Col>
-                                        <Col xs="12" md="9">
-                                            <Input type="email" id="hf-email" name="hf-email" placeholder="Enter Email..." autoComplete="email" />
-                                            <FormText className="help-block">Please enter your email</FormText>
-                                        </Col>
-                                    </FormGroup>
-
-                                
-
-
-
-
-                                    <FormGroup row>
-                                        <Col md="3">
-                                            <Label htmlFor="hf-password">Password</Label>
-                                        </Col>
-                                        <Col xs="12" md="9">
-                                            <Input type="password" id="hf-password" name="hf-password" placeholder="Enter Password..." autoComplete="current-password" />
-                                            <FormText className="help-block">Please enter your password</FormText>
+                                        <Col xs="12" md="4">
+                                            <Input type="name"  id="hf-name" name="Name" placeholder="Enter Name..." autoComplete="name" onChange={this.event_profile} />
+                                            <FormText className="help-block">Please enter your Name</FormText>
                                         </Col>
                                     </FormGroup>
 
 
 
 
-                                    
+
+
+                                    <FormGroup row>
+                                        <Col md="3">
+                                            <Label htmlFor="hf-contact number">Contact Number</Label>
+                                        </Col>
+                                        <Col xs="12" md="4">
+                                            <Input type="contact number"  id="hf-contact number" name="Contact" placeholder="Enter Contact Number..." autoComplete="contact number" onChange={this.event_profile} />
+                                            <FormText className="help-block">Please enter your Contact Number</FormText>
+                                        </Col>
+                                    </FormGroup>
+
+
+                                    <FormGroup row>
+                                        <Col md="3">
+                                            <Label htmlFor="hf-address">Address</Label>
+                                        </Col>
+                                        <Col xs="12" md="4">
+                                            <Input type="Address" id="hf-address" name="Address" placeholder="Enter Address..." autoComplete="address" onChange={this.event_profile} />
+                                            <FormText className="help-block">Please enter your Address</FormText>
+                                        </Col>
+                                    </FormGroup>
+
+
+
+                                    <FormGroup row>
+                                        <Col md="3">
+                                            <Label htmlFor="hf-home city">Home City</Label>
+                                        </Col>
+                                        <Col xs="12" md="4">
+                                            <Input type="home city" id="hf-home city" name="Homecity"  placeholder="Enter Home City..." autoComplete="home city" onChange={this.event_profile} />
+                                            <FormText className="help-block">Please enter your Home City</FormText>
+                                        </Col>
+                                    </FormGroup>
+
+
+
+
+
                                 </Form>
                             </CardBody>
                             <CardFooter>
-                                <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                                <Button type="submit" size="sm" color="primary" onClick={this.submit_profile}><i className="fa fa-dot-circle-o"></i> Submit</Button>
                                 <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
                             </CardFooter>
                         </Card>

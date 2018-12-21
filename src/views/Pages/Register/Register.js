@@ -8,36 +8,26 @@ class Register extends Component {
     this.create_account = this.create_account.bind(this)
     this.state = {
 
-      UserName: '',
+
       emailid: '',
       password: '',
       repassword: '',
       page: 1,
     }
-    this.userpackage = {
 
-      emailid: '',
-      nationality:'pakistani'
-
-    }
   }
+  //   userpr=>{
+  //   var dbref=fire.database().ref(`Users/${userpr.user.uid}`)
+  //   dbref.set(this.userpackage)
+
   event_register(e) {
     this.setState({ [e.target.name]: e.target.value })
 
   }
   create_account() {
-    this.userpackage.emailid=this.state.emailid
     if (this.state.password === this.state.repassword && this.state.password != "") {
       fire.auth().createUserWithEmailAndPassword(this.state.emailid, this.state.password)
-      .then(
-        userpr=>{
-        var dbref=fire.database().ref(`Users/${userpr.user.uid}`)
-        dbref.set(this.userpackage)
-        }
-      )
-      .catch()
-      
-      console.log("Cond Chl rhi hy")
+        .then(console.log("Acc Created"))
     }
     else {
       console.log("nai chl rhi")
@@ -58,12 +48,12 @@ class Register extends Component {
                     <h1>Register</h1>
                     <p className="text-muted">Create your account</p>
                     <InputGroup className="mb-3">
-                      <InputGroupAddon addonType="prepend">
+                      {/* <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="icon-user"></i>
+                          {<i className="icon-user"></i> }
                         </InputGroupText>
-                      </InputGroupAddon>
-                      <Input type="text" name="UserName" placeholder="Username" autoComplete="username" onChange={this.event_register} />
+                      </InputGroupAddon> */}
+                      {/* <Input type="text" name="UserName" placeholder="Username" autoComplete="username" onChange={this.event_register} /> */}
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
@@ -90,7 +80,7 @@ class Register extends Component {
                     <Button color="success" block onClick={this.create_account}>Create Account</Button>
                   </Form>
                 </CardBody>
-                <CardFooter className="p-4">
+                {/* <CardFooter className="p-4">
                   <Row>
                     <Col xs="12" sm="6">
                       <Button className="btn-facebook" block><span>facebook</span></Button>
@@ -99,7 +89,7 @@ class Register extends Component {
                       <Button className="btn-twitter" block><span>twitter</span></Button>
                     </Col>
                   </Row>
-                </CardFooter>
+                </CardFooter> */}
               </Card>
             </Col>
           </Row>

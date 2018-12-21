@@ -24,6 +24,7 @@ import Dashboard from './Dashboard';
 import Cowork from './Cowork';
 import AboutUs from './Cowork';
 import Profile from './Cowork';
+import Listing from './Cowork';
 import { CoreUIIcons, Flags, FontAwesome, SimpleLineIcons } from './Icons';
 import { Alerts, Badges, Modals } from './Notifications';
 import { Login, Page404, Page500, Register } from './Pages';
@@ -77,6 +78,7 @@ export {
   fan,
   Cowork,
   AboutUs,
-  Profile
+  Profile,
+  Listing
 };
 

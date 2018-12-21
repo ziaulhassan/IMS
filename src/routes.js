@@ -212,13 +212,21 @@ const Profile = Loadable({
   loader: () => import('./views/Cowork/profile'),
   loading: Loading,
 });
-
+const Listing = Loadable({
+  loader: () => import('./views/Cowork/listing'),
+  loading: Loading,
+});
+const Inventory = Loadable({
+  loader: () => import('./views/code/inventory'),
+  loading: Loading,
+});
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/cowork',exact: true, name: 'Cowork', component: Cowork },
   { path: '/aboutus',exact: true, name: 'AboutUs', component: AboutUs }, 
   { path: '/profile',exact: true, name: 'Profile', component: Profile },
+  { path: '/listing',exact: true, name: 'Listing', component: Listing },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
@@ -263,6 +271,7 @@ const routes = [
   { path: '/tv',  name: 'tv',exact: true, component: tv },
   { path: '/fridge',  name: 'fridge',exact: true, component: fridge },
   { path: '/fan',  name: 'fan',exact: true, component: fan },
+  { path: '/inventory',  name: 'inventory',exact: true, component: Inventory },
 ];
 
 export default routes;

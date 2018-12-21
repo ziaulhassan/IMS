@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import fire from './Config/firebase'
 // Styles
 // CoreUI Icons Set
 import '@coreui/icons/css/coreui-icons.min.css';
@@ -21,6 +22,23 @@ import { Login, Page404, Page500, Register } from './views/Pages';
 // import { renderRoutes } from 'react-router-config';
 
 class App extends Component {
+  
+  componentDidMount()
+  {
+    fire.auth().onAuthStateChanged((user)=>{
+      if(user)
+      {
+        localStorage.setItem('user',user.uid)
+
+      }
+      else
+      {
+        localStorage.setItem('user',null)
+
+      }
+    })
+  
+  }
   render() {
     return (
       <HashRouter>
